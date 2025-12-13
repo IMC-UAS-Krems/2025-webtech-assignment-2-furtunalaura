@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charitable Donation</title>
+    <link rel="stylesheet" href="style.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+    <img src="img/logo.png" alt="Logo" height="40" class="me-2 logo-icon">
+    <span class="logo-text">Books aimed for children from foster care across Europe</span></a>
+    </nav>
+    <div class="container mt-4">
+        <div id="custom-alert" class="d-none" role="alert"></div>
+        <section id="gallery">
+            <h2 class="mb-3 text-center">Our products</h2>
+            <div class="row" id="product-list"></div>
+        </section>
+        <section id="cart-section" class="mt-5 d-none">
+            <h2>Your cart:</h2>
+            <ul id="cart-items" class="list-group mb-3"></ul>
+            <h4>Total: $<span id="cart-total">0.00</span></h4>
+            <button class="btn btn-success mt-2" id="checkout-btn">Checkout</button>
+        </section>
+        <section id="checkout-section" class="mt-5 d-none">
+            <h2>Buyer information:</h2>
+            <form id="checkout-form" class="row g-3 mt-3">
+                <div class="col-md-6">
+                    <label class="form-label">First name:</label>
+                    <input type="text" class="form-control" id="firstName" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Last name:</label>
+                    <input type="text" class="form-control" id="lastName" required>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Address:</label>
+                    <input type="text" class="form-control" id="address" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Email:</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Phone:</label>
+                    <input type="text" class="form-control" id="phone" required>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">ZIP Code:</label>
+                    <input type="text" class="form-control" id="zip" required>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Submit Order</button>
+                </div>
+            </form>
+        </section>
+        <section id="confirmation-section" class="mt-5 d-none">
+            <h2>Order Details</h2>
+            <p id="confirmation-details"></p>
+        </section>
+
+    </div>
+   <script 
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+   </script>
+
+   <script src="scripts.js"><button class="btn btn-primary add-to-cart" data-id="${book.id}" aria-label="Add ${book.name} to cart">Add to Cart</button></script>
+
+    <footer class="footer mt-5">
+    <div class="container text-center py-3">
+        <p class="footer-text mb-0">© 2025 Warm Pages Charity — Bringing Stories to Children in Need</p>
+    </div>
+    </footer>
+</body>
+</html>
+

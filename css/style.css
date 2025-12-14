@@ -1,13 +1,15 @@
 body {
-    background: #e3ade5 !important; 
-    font-family: Arial, sans-serif;
+    background: #e3ade5 !important;
+    font-family: Arial;
     color: #2a2a2a;
 }
+
 .navbar {
-    background:#8ecae6;
+    background: #8ecae6;
 }
 
-h2, h4 {
+h2,
+h4 {
     color: black;
 }
 
@@ -29,38 +31,27 @@ h2, h4 {
 }
 
 .btn-primary {
-    background-color: navy !important; 
-    border-color: rgb(89, 89, 150) !important;
+    background-color: navy !important;
     transition: background-color 0.3s ease, border-color 0.3s ease;
     min-width: 100px;
 }
 
 .btn-primary:hover {
-    background-color: #001f3f !important; 
-    border-color: #001f3f !important;
+    background-color: #4f46ad !important;
 }
 
 .btn-primary:active {
-    background-color: lightblue !important; 
-    border-color: lightblue !important;
+    background-color: lightblue !important;
 }
 
-.btn-success {
-    background-color: #8ecae6; 
-    border-color: #8ecae6;
-}
-
-.btn-success:hover {
-    background-color: #7dc3df;
-}
-
-#cart-section, #checkout-section {
+#cart-section,
+#checkout-section {
     background: #ffb3c6;
     border-radius: 12px;
     padding: 25px;
     margin-top: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.10);
-    border: 2px solid #d67890; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+    border: 2px solid #d67890;
 }
 
 .form-label {
@@ -68,29 +59,23 @@ h2, h4 {
 }
 
 .form-control {
-    border: 1px solid #4e6489;
     background: #457ec9;
 }
 
 .form-control:focus {
-    border-color: #8ecae6;
-    box-shadow: #456ba1;
+    box-shadow: #4a6c9d;
 }
 
 #confirmation-section {
-    background: #b1ddf3; 
+    background: #b1ddf3;
     border: 2px solid #234764;
     border-radius: 12px;
     padding: 25px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-
-#confirmation-section h4 {
-    color:black;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 button[type="submit"] {
-    background-color:#8dbcdc;
+    background-color: #8dbcdc;
     border-color: #456ba1;
 }
 
@@ -101,9 +86,8 @@ button[type="submit"]:hover {
 
 .logo-icon {
     border-radius: 50%;
-    background: #ffb3c6;
     padding: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 .logo-text {
@@ -113,11 +97,10 @@ button[type="submit"]:hover {
     letter-spacing: 0.5px;
 }
 
-
 .footer {
     background: #8ecae6;
     border-radius: 12px 12px 0 0;
-    box-shadow: 0 -4px 10px rgba(0,0,0,0.08);
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .footer-text {
@@ -126,27 +109,16 @@ button[type="submit"]:hover {
     letter-spacing: 0.5px;
 }
 
-#custom-alert {
-    background: #f0bfcd; 
-    border: 2px solid #ffb3c6;
-    color: #703846;
-    font-weight: 600;
-    border-radius: 10px;
-    width: 60%;
-    margin: 15px auto;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-}
-
-#cart-notification{
+#cart-notification {
     border-radius: 5px;
     top: 5px;
-    transform:translateX(-50%);
+    transform: translateX(-50%);
     background: #eec5c5;
-    color:black;
-    position:fixed;
-    left:50%;
-    padding:10px;
-    z-index:1000;
-    display:none;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    color: black;
+    position: fixed;
+    left: 50%;
+    padding: 10px;
+    z-index: 1000;
+    display: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }

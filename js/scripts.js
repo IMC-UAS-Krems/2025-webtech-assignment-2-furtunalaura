@@ -1,3 +1,4 @@
+// Array of available products with their details (id, name, price, image path)
 const products = [
     { id: 1, name: "The White Album", price: 13.99, img: "img/1book.jpg" },
     { id: 2, name: "Song of Solomon", price: 14.50, img: "img/2book.jpg" },
@@ -12,8 +13,14 @@ const products = [
     { id: 11, name: "The color purple", price: 14.85, img: "img/11book.jpg" },
     { id: 12, name: "The Unbearable Lightness of Being", price: 10.65, img: "img/12book.jpg" }
 ];
-const productList = document.getElementById("product-list");
 
+// List of European countries for form validation
+const europeanCountries = [
+    "Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary", "Ireland", "Italy", "Latvia", "Lithuania", "Luxembourg", "Malta", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "United Kingdom"
+];
+
+// Gets the product list container and introduces the product cards
+const productList = document.getElementById("product-list");
 products.forEach(book => {
     const card = `
         <div class="col-md-4 mb-4">
@@ -29,21 +36,23 @@ products.forEach(book => {
             </div>
         </div>
     `;
-productList.innerHTML += card;
+    productList.innerHTML += card;
 });
-let cart = [];
+
+// Cart functionality variables
+let cart = []; // Array to hold items added to cart
 const cartSection = document.getElementById("cart-section");
 const cartItems = document.getElementById("cart-items");
 const cartTotal = document.getElementById("cart-total");
 
-// Create notification div
+// Creates notification div for add-to-cart messages
 const notification = document.createElement('div');
 notification.id = 'cart-notification';
-
 document.body.appendChild(notification);
 
-// Add to cart event
+// Event listener for add-to-cart and remove-from-cart buttons
 document.addEventListener("click", (e) => {
+    // Handles adding item to cart
     if (e.target.classList.contains("add-to-cart")) {
         const productId = parseInt(e.target.getAttribute("data-id"));
         const product = products.find(p => p.id === productId);
@@ -54,87 +63,112 @@ document.addEventListener("click", (e) => {
             notification.style.display = 'none';
         }, 3000);
         updateCart();
+    // Handles removing item from cart
+    } else if (e.target.classList.contains("remove-from-cart")) {
+        const index = parseInt(e.target.getAttribute("data-index"));
+        cart.splice(index, 1);
+        updateCart();
     }
 });
 
+// Function to update and display the cart contents
 function updateCart() {
-    // Show cart section
+    // Shows cart section
     cartSection.classList.remove("d-none");
     cartItems.innerHTML = "";
     let total = 0;
-    cart.forEach(item => {
+    cart.forEach((item, index) => {
         total += item.price;
+        // Creates list item for each cart item with remove button
         const listItem = `
-            <li class="list-group-item d-flex justify-content-between">
-                ${item.name} 
-                <span>$${item.price.toFixed(2)}</span>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>${item.name} - $${item.price.toFixed(2)}</span>
+                <button class="btn btn-danger btn-sm remove-from-cart" data-index="${index}">Remove</button>
             </li>
         `;
         cartItems.innerHTML += listItem;
     });
-
     cartTotal.textContent = total.toFixed(2);
+    // Hides cart if empty
+    if (cart.length === 0) {
+        cartSection.classList.add("d-none");
+    }
 }
+
+// Checkout button and section elements
 const checkoutBtn = document.getElementById("checkout-btn");
 const checkoutSection = document.getElementById("checkout-section");
 
+// Event listener for checkout button to show form
 checkoutBtn.addEventListener("click", () => {
-    // Hide cart, show form
+    // Hides cart, shows checkout form
     cartSection.classList.add("d-none");
     checkoutSection.classList.remove("d-none");
 });
 
+// Form and confirmation elements
 const checkoutForm = document.getElementById("checkout-form");
 const confirmationSection = document.getElementById("confirmation-section");
 const confirmationDetails = document.getElementById("confirmation-details");
 
-checkoutForm.addEventListener("submit", function(e) {
-    e.preventDefault(); 
-
-    // Get form values
+// Event listener for form submission
+checkoutForm.addEventListener("submit", function (e) {
+    e.preventDefault(); // Prevents default form submission
+    // Retrieves and trims form input values
     const firstName = document.getElementById("firstName").value.trim();
     const lastName = document.getElementById("lastName").value.trim();
-    const address = document.getElementById("address").value.trim();
+    const country = document.getElementById("country").value.trim();
     const email = document.getElementById("email").value.trim();
     const phone = document.getElementById("phone").value.trim();
-    const zip = document.getElementById("zip").value.trim();
+    const cardNumber = document.getElementById("cardNumber").value.trim();
 
-    // Validations
-    if (!firstName || !lastName || !address) {
+    // Validates required fields
+    if (!firstName || !lastName || !country) {
         alert("Please fill in all required fields.");
         return;
     }
 
+    // Validates European country selection
+    if (!europeanCountries.includes(country)) {
+        alert("Please select a valid country from Europe.");
+        return;
+    }
+
+    // Validates email format
     if (!email.includes("@") || !email.includes(".")) {
         alert("Please enter a valid email address.");
         return;
     }
 
+    // Validates phone is numeric
     if (!/^[0-9]+$/.test(phone)) {
         alert("Phone number can contain numbers only.");
         return;
     }
 
-    if (zip.length > 6) {
-        alert("ZIP code cannot be more than 6 characters.");
+    // Validates card number length
+    if (!/^\d{15,19}$/.test(cardNumber)) {
+        alert("Please enter a valid card number (15-19 digits).");
         return;
     }
-    // Calculate total with discount and tax
+
+    // Calculates order total, discount, tax, and final total
     let total = 0;
     cart.forEach(item => total += item.price);
     let discount = 0;
     if (cart.length >= 3) {
-        discount = total * 0.10;
+        discount = total * 0.15;
         total = total - discount;
     }
-    const tax = total * 0.13;
+    const tax = total * 0.10; // Apply 10% tax
     const finalTotal = total + tax;
+    // Hides form, shows confirmation
     checkoutSection.classList.add("d-none");
     confirmationSection.classList.remove("d-none");
     confirmationDetails.innerHTML = `
         <h4>Thank you for your donation!</h4>
         <p><strong>Name:</strong> ${firstName} ${lastName}</p>
-        <p><strong>Address:</strong> ${address}</p>
+        <p><strong>Country you want to donate in:</strong> ${country}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Phone:</strong> ${phone}</p>
         <p><strong>Items purchased:</strong></p>
@@ -142,7 +176,7 @@ checkoutForm.addEventListener("submit", function(e) {
             ${cart.map(item => `<li>${item.name} - $${item.price.toFixed(2)}</li>`).join("")}
         </ul>
         <p><strong>Discount:</strong> $${discount.toFixed(2)}</p>
-        <p><strong>Tax (13%):</strong> $${tax.toFixed(2)}</p>
+        <p><strong>Tax (10%):</strong> $${tax.toFixed(2)}</p>
         <h4><strong>Final Total:</strong> $${finalTotal.toFixed(2)}</h4>
     `;
 });

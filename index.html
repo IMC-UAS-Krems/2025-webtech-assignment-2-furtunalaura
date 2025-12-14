@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charitable Donation</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand d-flex align-items-center flex-wrap" href="#">
+            <img src="img/logo.png" alt="Logo" height="40" class="me-2 flex-shrink-0">
+            <span class="logo-text text-wrap"> Books aimed for children from foster care across Europe</span>
+        </a>
+    </nav>
+    <div class="container">
+        <section id="gallery">
+            <p><b>The purpose of this organization is to inspire children by giving them access to knowledge and igniting their curiosity.</b> </p>
+            <h2 class="mb-3 text-center"><b>Our products</b></h2>
+            <div class="row" id="product-list"></div>
+        </section>
+        <section id="cart-section" class="mt-5 d-none">
+            <h2>Your cart:</h2>
+            <ul id="cart-items" class="list-group mb-3"></ul>
+            <h4>Total: $<span id="cart-total">0.00</span></h4>
+            <button class="btn btn-success mt-2" id="checkout-btn">Checkout</button>
+        </section>
+        <section id="checkout-section" class="mt-5 d-none">
+            <h2>Buyer information:</h2>
+            <form id="checkout-form" class="row g-3 mt-3">
+                <div class="col-md-6">
+                    <label class="form-label">First name:</label>
+                    <input type="text" class="form-control" id="firstName" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Last name:</label>
+                    <input type="text" class="form-control" id="lastName" required>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Country you want to donate in:</label>
+                    <input type="text" class="form-control" id="country" list="countries" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Email:</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Phone:</label>
+                    <input type="text" class="form-control" id="phone" required>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Card Number: (Example: 378282246310005)</label>
+                    <input type="text" class="form-control" id="cardNumber" required>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Submit Order</button>
+                </div>
+            </form>
+            <datalist id="countries">
+                <option value="Austria">
+                <option value="Belgium">
+                <option value="Bulgaria">
+                <option value="Croatia">
+                <option value="Cyprus">
+                <option value="Czech Republic">
+                <option value="Denmark">
+                <option value="Estonia">
+                <option value="Finland">
+                <option value="France">
+                <option value="Germany">
+                <option value="Greece">
+                <option value="Hungary">
+                <option value="Ireland">
+                <option value="Italy">
+                <option value="Latvia">
+                <option value="Lithuania">
+                <option value="Luxembourg">
+                <option value="Malta">
+                <option value="Netherlands">
+                <option value="Poland">
+                <option value="Portugal">
+                <option value="Romania">
+                <option value="Slovakia">
+                <option value="Slovenia">
+                <option value="Spain">
+                <option value="Sweden">
+                <option value="Switzerland">
+                <option value="United Kingdom">
+            </datalist>
+        </section>
+        <section id="confirmation-section" class="mt-5 d-none">
+            <h2>Order Details</h2>
+            <p id="confirmation-details"></p>
+        </section>
+    </div>
+    <script src="scripts.js"></script>
+    <footer class="footer mt-5">
+        <div class="container text-center py-3">
+            <p class="footer-text mb-0">© 2025 - Bringing Stories to Children in Need</p>
+        </div>
+    </footer>
+</body>
+
+</html>
